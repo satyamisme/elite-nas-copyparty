@@ -1,42 +1,140 @@
-# Elite NAS Ultimate Pro (Magisk Module)
+---
 
-Elite NAS Ultimate Pro is an enterprise-grade, background-first Network Attached Storage (NAS) solution specifically designed for Android TV environments (Mi TV Stick, Mi Box, etc.). By integrating a hardened Termux environment, a privileged BusyBox binary, and the Copyparty file server, this module transforms standard media hardware into a high-performance file appliance.
+# 🚀 Elite NAS Ultimate Pro
 
-## 🚀 Key Features
+### **Enterprise-Grade Headless NAS for Android TV**
 
-*   **100% Headless Setup**: Automated Termux bootstrapping and Python environment extraction. No manual interaction with the Termux GUI is required.
-*   **Architecture Aware**: Automatically detects and extracts the correct environment for `aarch64` (64-bit) or `arm` (32-bit) devices during installation.
-*   **USB OTG Read/Write Enforcer**: Automated remounting and permission fixing for external drives (`/mnt/media_rw/*`), overcoming standard Android storage restrictions.
-*   **Speed Optimized**: Calibrated with $256$ KiB socket buffers (`--s-wr-sz 262144`) and disabled resource-heavy metadata indexing to maximize ARM CPU efficiency.
-*   **Self-Healing Watchdog**: A background monitoring service that checks the daemon status every 60 seconds and auto-restarts the server if it crashes.
-*   **Enterprise Observability**: A dedicated dashboard providing real-time data on active clients, storage health, and OOM (Out of Memory) priority scores.
+
+[](https://www.google.com/search?q=%5Bhttps://github.com/topjohnwu/Magisk%5D(https://github.com/topjohnwu/Magisk))
+[](https://www.google.com/search?q=%23-system-requirements)
+
+**Elite NAS Ultimate Pro** is a high-performance, background-first Network Attached Storage (NAS) solution engineered for Android TV environments (Mi TV Stick, Mi Box, Ugoos, etc.). It bridges the gap between restricted mobile firmware and enterprise file services by integrating a hardened Termux environment, architecture-aware Python bootstrapping, and the Copyparty file server. [1, 1]
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+| --- | --- |
+| **100% Headless** | Automated Termux bootstrapping and Python extraction. No GUI interaction required. 
+
+ |
+| **USB OTG RW Fix** | Automated remounting and permission enforcement (`chmod 777`) for external drives. 
+
+ |
+| **Speed Optimized** | Pre-configured with 256KB socket buffers to maximize ARM CPU efficiency. [1, 1] |
+| **Self-Healing** | Background **Watchdog** service monitors the daemon and auto-restarts on crashes. 
+
+ |
+| **OOM Protection** | Hardened priority settings (-1000 score) to prevent system memory killers. 
+
+ |
+| **Live Dashboard** | Real-time terminal reporting of active clients, storage health, and process status. 
+
+ |
+
+---
 
 ## 🛠️ System Requirements
 
-*   **Android Version**: 7.0 (API 24) to 14 (API 34).[1, 1]
-*   **Root Framework**: Magisk 26.0+ or KernelSU.[1, 1]
-*   **Device Architecture**: ARMv7 (32-bit) or ARM64 (64-bit).[1, 1]
+* **Host Device:** Android TV (Mi Stick 4K/jaws, Mi Box S, etc.). 
+
+
+* **Android Version:** 7.0 (API 24) to 14 (API 34). 
+
+
+* **Architecture:** ARMv7 (32-bit) or ARM64 (64-bit). 
+
+
+* **Root:** Magisk 26.0+ or KernelSU. 
+
+
+
+---
 
 ## 📥 Installation
 
-1.  Download the `elite-nas-ultimate.zip`.
-2.  Install via **Magisk Manager** -> **Modules** -> **Install from storage**.
-3.  Reboot your device.
-4.  **Important**: On the first boot, the module will take 3-5 minutes to initialize the Python environment in the background.
-5.  Access your NAS via browser at `http://:8080`.
+1. Download the latest([https://github.com/your-repo/releases](https://www.google.com/search?q=https://github.com/your-repo/releases)).
+2. Open **Magisk Manager** ➔ **Modules** ➔ **Install from storage**. 
 
-## 💻 Management Commands
 
-Run these via ADB shell or a local terminal emulator:
+3. Select the ZIP and reboot your device.
+4. **⏱ Important:** On the first boot, wait **3-5 minutes** for the Python environment to initialize in the background. 
 
-| Command | Description |
-| :--- | :--- |
-| `module-status` | Displays the NAS Dashboard (Process info, Clients, Storage). |
-| `module-restart` | Forcefully releases ports and restarts all background services. |
-| `nas-open` | Automatically triggers an intent to open the NAS URL on the TV's browser. |
 
-## ⚙️ Configuration
 
-Customization can be performed by editing `/data/adb/modules/elite-nas-copyparty/config.sh`.
-*   **Port**: Default is 8080.
-*   **Optimization**: Speed-optimized flags are enabled by default in the startup logic.
+---
+
+## 💻 Management & GUI Dashboard
+
+The module includes system-wide binaries that can be executed from any terminal (ADB shell or Termux):
+
+| Command | Action |
+| --- | --- |
+| `module-status` | Launches the **Enhanced Dashboard** (IP, Clients, Storage stats). 
+
+ |
+| `module-restart` | Forcefully releases ports and re-initializes all background services. 
+
+ |
+| `nas-open` | Triggers a TV intent to open the NAS web interface in the local browser. 
+
+ |
+
+---
+
+## 📂 Directory Structure
+
+elite-nas-copyparty/
+├── busybox                 # Privileged binary v1.31.1 
+├── copyparty.py            # Core File Server 
+├── customize.sh            # Automated Magisk Installer 
+├── service.sh              # Background Daemon & Watchdog 
+├── config.sh               # User-defined Port/Fallback settings 
+├── module-status.sh        # GUI Terminal Dashboard 
+├── bootstrap-aarch64.zip   # 64-bit Python Environment 
+├── bootstrap-arm.zip       # 32-bit Python Environment 
+└── system/bin/             # Global symlinks (status, restart) 
+
+---
+
+## ⚙️ Performance Tuning
+
+By default, the module applies high-speed parameters from `config_speed_optimized.sh` [1, 1]:
+
+* `--s-wr-sz 262144`: High-speed socket write buffers.
+* `--no-vthumb`: Disables video thumbnails to preserve TV CPU.
+* `--no-dedup`: Skips hash checks for maximum write speed.
+
+---
+
+## 📜 Copyright & Credits
+
+This project is a composite work utilizing several powerful open-source components:
+
+* **BusyBox**: Copyright © 1998-2015 Multiple Authors. Licensed under [GPLv2](https://www.google.com/search?q=https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html). 
+
+
+* **Termux**: Copyright © Termux Contributors. Licensed under [GPLv3](https://www.google.com/search?q=https://www.gnu.org/licenses/gpl-3.0.en.html). 
+
+
+* **Copyparty**: Copyright © 9001. Licensed under the([https://github.com/9001/copyparty/blob/hovudstraum/LICENSE](https://www.google.com/search?q=https://github.com/9001/copyparty/blob/hovudstraum/LICENSE)). 
+
+
+* **Module Integration**: Copyright © **GenesisPC**. All original shell scripts (`service.sh`, `customize.sh`, `module-status.sh`), architectural logic, and Android TV hardening are the property of GenesisPC. 
+
+
+
+---
+
+## 🔗 Links & Resources
+
+* **Project Home:**([https://github.com/satyamisme/elite-nas-copyparty](https://www.google.com/search?q=https://github.com/satyamisme/elite-nas-copyparty))
+* **Developer Support:**
+* **Report Bugs:** Please include the output of `adb shell su -c module-status` in your issue. 
+
+
+
+---
+
+**Elite NAS Ultimate Pro** - *Transforming TV Sticks into High-Performance Storage Appliances.*
