@@ -1,7 +1,7 @@
 #!/system/bin/sh
 MODPATH=${0%/*}
 
-ui_print "--- Elite NAS Pro v5.2 Installer ---"
+ui_print "--- Elite NAS Pro v5.3 (Fixed) ---"
 
 # 1. Background Termux Install
 if ! pm list packages | grep -q com.termux; then
@@ -13,8 +13,8 @@ fi
 mkdir -p "$MODPATH/system/bin"
 ln -sf "$MODPATH/busybox" "$MODPATH/system/bin/busybox"
 chmod 755 "$MODPATH/busybox"
-ln -sf "$MODPATH/module-restart.sh" "$MODPATH/system/bin/module-restart"
-ln -sf "$MODPATH/module-status.sh" "$MODPATH/system/bin/module-status"
+ln -sf "$MODPATH/module-restart.sh" "$MODPATH/system/bin/nas-restart"
+ln -sf "$MODPATH/module-status.sh" "$MODPATH/system/bin/nas-status"
 ln -sf "$MODPATH/nas-open.sh" "$MODPATH/system/bin/nas-open"
 chmod 755 "$MODPATH/system/bin/"*
 
@@ -33,7 +33,6 @@ if [ -d "$TERMUX_DATA" ]; then
         ui_print "- Extracting Python Base ($B_ZIP)..."
         "$MODPATH/busybox" unzip -o "$MODPATH/$B_ZIP" -d "$TERMUX_DATA/" >/dev/null 2>&1
         
-        # CRITICAL: Match ownership to Termux UID [4]
         T_UID=$(stat -c %u "$TERMUX_DATA" 2>/dev/null || echo 10227)
         chown -R "$T_UID:$T_UID" "$TERMUX_DATA/usr" 2>/dev/null
         chmod -R 755 "$TERMUX_DATA/usr/bin" 2>/dev/null

@@ -2,19 +2,29 @@
 MODDIR="/data/adb/modules/elite-nas-copyparty"
 BB="$MODDIR/busybox"
 
-IP=$(cat "$MODDIR/.ip" 2>/dev/null)
 PID=$(cat "$MODDIR/.pid" 2>/dev/null)
-PORT=$(cat "$MODDIR/.port" 2>/dev/null)
-STORAGE=$(cat "$MODDIR/.storage" 2>/dev/null)
+PORT=8080
+STORAGE="/mnt/media_rw/4E04-D72A"
 
 echo "========================================"
-echo "  ELITE NAS PRO v5.2 DASHBOARD"
+echo "  ELITE NAS PRO v5.3 (Fixed)"
 echo "========================================"
 if [ -n "$PID" ] && ps -p "$PID" >/dev/null 2>&1; then
     echo "STATUS:   RUNNING (PID: $PID)"
-    echo "URL:      http://$IP:$PORT"
-    OOM=$("$BB" cat /proc/$PID/oom_score_adj 2>/dev/null || echo "N/A")
-    echo "OOM ADJ:  $OOM"
+    
+    # Get IP
+    IP=$("$BB" ifconfig 2>/dev/null | "$BB" grep "inet addr:" | "$BB" grep -v "127.0.0.1" | "$BB" awk '{print $2}' | "$BB" cut -d: -f2 | "$BB" head -n1)
+    [ -z "$IP" ] && IP=$("$BB" ifconfig 2>/dev/null | "$BB" grep "inet " | "$BB" grep -v "127.0.0.1" | "$BB" awk '{print $2}' | "$BB" head -n1)
+    [ -z "$IP" ] && IP="Unknown"
+    
+    echo "URL:      http://$IP:$PORT/nas/"
+    
+    OOM=$(cat /proc/$PID/oom_score_adj 2>/dev/null || echo "N/A")
+    if [ "$OOM" = "-1000" ]; then
+        echo "OOM ADJ:  PROTECTED (-1000)"
+    else
+        echo "OOM ADJ:  $OOM (at risk)"
+    fi
 else
     echo "STATUS:   DEAD"
 fi

@@ -1,0 +1,145 @@
+[1/9] Device Info... 
+========================================== 
+DEVICE INFORMATION 
+========================================== 
+MiTV-AFKR0
+11
+armeabi-v7a
+ 
+========================================== 
+CURRENT STATUS 
+========================================== 
+========================================
+  ELITE NAS PRO v5.3 (Fixed)
+========================================
+STATUS:   RUNNING (PID: 25464)
+URL:      http://192.168.0.241:8080/nas/
+OOM ADJ:  N/A (at risk)
+STORAGE:  /mnt/media_rw/4E04-D72A
+                        931.5G    442.7G    488.8G  48% /mnt/media_rw/4E04-D72A
+CLIENTS:  0
+0 active
+========================================
+ 
+========================================== 
+SERVICE LOG (last 50 lines) 
+========================================== 
+[2026-02-13 12:27:14] === Started v5.3 ===
+copyparty v1.20.6 "sftp is fine too" (2026-01-31)
+  CPython v3.12.12 on Linux32  [Clang 21.0.0 (]
+   sqlite 3.51.2*1 | jinja 2.11.3 | pyftpd 1.5.10 | tftp 0.4.0 | miko (None)
+
+using hostname from /data/data/com.termux/files/home/.config/copyparty/name.txt
+
+2026-02-13
+12:27:15.661 root                  WARN: WARNING: --th-ram-max is very small (0.30 GiB); will not be able to generate audio waveforms or spectrograms
+12:27:15.662 root                   LOG: creating new sessions-db /data/data/com.termux/files/home/.config/copyparty/sessions.db
+12:27:15.723 root                   LOG: created new sessions-db
+12:27:15.752 auth                   LOG: volumes and permissions:
+
+"/nas"  /mnt/media_rw/4E04-D72A/NAS
+|    read:  everybody
+|   write:  everybody
+|    move:  --none--
+|  delete:  --none--
+|    dots:  --none--
+|     get:  --none--
+|   upGet:  --none--
+|    html:  --none--
+|  uadmin:  --none--
+
+12:27:15.752 auth                   BTW: hint: enable searching and upload-undo with argument -e2dsa
+12:27:15.752 auth                   BTW: hint: enable upload deduplication with --dedup (but see readme for consequences)
+12:27:15.801 root                   LOG: max clients: 1024
+12:27:15.823 tcpsrv                 LOG: available @  http://127.0.0.1:8080/  (1-lo)
+12:27:15.823 tcpsrv                 LOG: available @  http://[::1]:8080/  (1-lo)
+12:27:15.823 tcpsrv                 LOG: available @  http://[fe80::601e:51ff:fe1c:c3d5]:8080/  (2-dummy0)
+12:27:15.823 tcpsrv                 LOG: available @  http://[fe80::1c74:2aff:fe99:6f0d]:8080/  (7-wlan0)
+12:27:15.823 tcpsrv                 LOG: available @  http://192.168.0.241:8080/  (7-wlan0, external)
+
+12:27:15.841 optional-dependencies  BTW: OK: sqlite, NG: pillow, vips, pillow-webp, ffmpeg, ffprobe, mutagen, argon2, pyzmq, pillow-heif, pillow-avif, rawpy, see --deps (this is fine btw)
+12:27:15.842 thumb                  LOG: decoder preference: (None available)
+12:27:15.842 thumb                 WARN: need either Pillow, pyvips, or FFmpeg to create thumbnails; for example:
+                                     python3 -m pip install --user Pillow
+                                     python3 -m pip install --user pyvips
+                                     apt install ffmpeg
+12:27:15.842 thumb                  BTW: setting --no-acode because either FFmpeg or FFprobe is not available
+12:27:18.141 tcpsrv                 LOG: listening @ [::]:8080  f3 p30212
+12:27:18.145 cert                   BTW: creating new ca ...
+12:27:18.146 hsrv                   LOG: subscribed @ [::]:8080  f3 p30212
+12:27:18.148 root                   LOG: workers OK
+
+12:27:18.151 up2k                   LOG: /nas/ casechk:y fsnt:win
+12:27:18.152 up2k                   LOG: 0 volumes in 0.00 sec
+12:27:18.153 cert                  WARN: could not create TLS certificates: [Errno 2] No such file or directory: 'cfssl'
+12:27:18.153 cert                   BTW: install cfssl if you want to fix this; https://github.com/cloudflare/cfssl/releases/latest  (cfssl, cfssljson, cfssl-certinfo)
+12:27:18.157 cert                  WARN: using default TLS certificate; https will be insecure: /data/data/com.termux/files/home/.config/copyparty/cert.pem
+ 
+========================================== 
+START LOG 
+========================================== 
+OOM protection OK
+OOM protection OK
+ 
+========================================== 
+PYTHON PROCESSES 
+========================================== 
+ 
+========================================== 
+NETWORK STATUS 
+========================================== 
+ 
+Active Connections: 
+ 
+========================================== 
+USB STORAGE 
+========================================== 
+total 128
+drwxr-x---  3 root external_storage     60 2026-02-13 12:50 .
+drwxr-xr-x 15 root system              320 2026-02-13 12:49 ..
+drwxrwx--- 20 root media_rw         131072 2026-02-13 12:50 4E04-D72A
+ 
+Filesystem                 Size  Used Avail Use% Mounted on
+/dev/block/vold/public:8,1 931G  443G  489G  48% /mnt/pass_through/0/4E04-D72A
+ 
+========================================== 
+MODULE FILES 
+========================================== 
+total 34948
+drwxr-xr-x 2 root root     4096 2026-02-13 12:55 .
+drwxr-xr-x 4 root root     4096 2026-02-07 23:27 ..
+-rwxr-xr-x 1 root root       14 2026-02-13 12:27 .ip
+-rw-r--r-- 1 root root        6 2026-02-13 12:55 .pid
+-rwxr-xr-x 1 root root        5 2026-02-13 12:27 .port
+-rw-r--r-- 1 root root        8 2026-02-13 12:27 .status
+-rwxr-xr-x 1 root root       24 2026-02-13 12:27 .storage
+-rw-r--r-- 1 root root        6 2026-02-13 12:55 .watchdog_pid
+-rwxr-xr-x 1 root root   139569 2026-02-07 23:26 bootstrap-aarch64.zip
+-rwxr-xr-x 1 root root   139522 2026-02-07 23:26 bootstrap-arm.zip
+-rwxr-xr-x 1 root root  1444936 2026-02-07 23:26 busybox
+-rwxr-xr-x 1 root root       70 2026-02-13 12:54 config_speed_optimized.sh
+-rwxr-xr-x 1 root root  1147061 2026-02-07 23:26 copyparty.py
+-rwxr-xr-x 1 root root     1451 2026-02-13 12:54 customize.sh
+-rwxr-xr-x 1 root root      693 2026-02-13 12:54 module-restart.sh
+-rwxr-xr-x 1 root root     1278 2026-02-13 12:54 module-status.sh
+-rwxr-xr-x 1 root root      192 2026-02-13 12:54 module.prop
+-rwxr-xr-x 1 root root      293 2026-02-13 12:54 nas-open.sh
+-rwxr-xr-x 1 root root      191 2026-02-13 12:54 post-fs-data.sh
+-rw-r--r-- 1 root root     9180 2026-02-13 12:27 service.log
+-rwxr-xr-x 1 root root     1432 2026-02-13 12:54 service.sh
+-rw-r--r-- 1 root root       36 2026-02-13 12:55 start.log
+-rwxr-xr-x 1 root root 32808818 2026-02-07 23:26 termux.apk
+ 
+========================================== 
+STATE FILES 
+========================================== 
+.pid file: 
+25464
+.watchdog_pid file: 
+25971
+Wake lock: 
+elite_nas_v53 
+ 
+========================================== 
+END OF DIAGNOSTICS 
+========================================== 
