@@ -85,4 +85,10 @@ For more details, see the [Documentation](docs/).
 
 ---
 
+## 🔄 Updates
+
+To enable automatic updates via Magisk Manager, follow the instructions in [docs/ENABLE_UPDATES.md](docs/ENABLE_UPDATES.md).
+
+---
+
 **Elite NAS Ultimate Pro** - *Transforming TV Sticks into High-Performance Storage Appliances.*
