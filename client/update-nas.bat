@@ -19,14 +19,14 @@ adb shell su -c "killall -9 python3"
 timeout /t 3 /nobreak >nul
 
 echo [3/7] Pushing files to /sdcard/...
-adb push service.sh /sdcard/
-adb push module-restart.sh /sdcard/
-adb push module-status.sh /sdcard/
-adb push customize.sh /sdcard/
-adb push post-fs-data.sh /sdcard/
-adb push nas-open.sh /sdcard/
-adb push config_speed_optimized.sh /sdcard/
-adb push module.prop /sdcard/
+adb push ..\module\service.sh /sdcard/
+adb push ..\module\module-restart.sh /sdcard/
+adb push ..\module\module-status.sh /sdcard/
+adb push ..\module\customize.sh /sdcard/
+adb push ..\module\post-fs-data.sh /sdcard/
+adb push ..\module\nas-open.sh /sdcard/
+adb push ..\module\config_speed_optimized.sh /sdcard/
+adb push ..\module\module.prop /sdcard/
 
 echo [4/7] Copying files to module directory...
 adb shell su -c "cp /sdcard/service.sh /data/adb/modules/elite-nas-copyparty/"

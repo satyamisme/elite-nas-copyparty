@@ -1,139 +1,93 @@
----
+# Elite NAS Pro v5.3
 
-# 🚀 Elite NAS Ultimate Pro
+**Enterprise-Grade Headless NAS for Android TV (Magisk Module)**
 
-### **Enterprise-Grade Headless NAS for Android TV**
+Turn your Android TV Box (Mi Box, Fire TV, etc.) into a rock-solid, always-on NAS server.
 
+## 🎯 Key Features (v5.3 - Bug Free)
 
-[](https://www.google.com/search?q=%5Bhttps://github.com/topjohnwu/Magisk%5D(https://github.com/topjohnwu/Magisk))
-[](https://www.google.com/search?q=%23-system-requirements)
-
-**Elite NAS Ultimate Pro** is a high-performance, background-first Network Attached Storage (NAS) solution engineered for Android TV environments (Mi TV Stick, Mi Box, Ugoos, etc.). It bridges the gap between restricted mobile firmware and enterprise file services by integrating a hardened Termux environment, architecture-aware Python bootstrapping, and the Copyparty file server. [1, 1]
-
----
-
-## ✨ Key Features
-
-| Feature | Description |
-| --- | --- |
-| **100% Headless** | Automated Termux bootstrapping and Python extraction. No GUI interaction required. 
-
- |
-| **USB OTG RW Fix** | Automated remounting and permission enforcement (`chmod 777`) for external drives. 
-
- |
-| **Speed Optimized** | Pre-configured with 256KB socket buffers to maximize ARM CPU efficiency. [1, 1] |
-| **Self-Healing** | Background **Watchdog** service monitors the daemon and auto-restarts on crashes. 
-
- |
-| **OOM Protection** | Hardened priority settings (-1000 score) to prevent system memory killers. 
-
- |
-| **Live Dashboard** | Real-time terminal reporting of active clients, storage health, and process status. 
-
- |
+*   **100% Headless:** Automated setup, no GUI needed.
+*   **Triple Protection:**
+    1.  ✅ **OOM Protection (-1000):** Never killed by memory manager.
+    2.  ✅ **Wake Lock:** Never killed by Doze mode.
+    3.  ✅ **Watchdog:** Auto-restarts every 5 minutes if crashed.
+*   **Auto-Configuration:**
+    *   Auto-detects any USB drive.
+    *   Auto-detects IP address.
+    *   Loads optimized speed config.
+*   **Performance:** Tuned for ARM devices (buffers, no-dedup).
 
 ---
 
-## 🛠️ System Requirements
+## 📂 Repository Structure
 
-* **Host Device:** Android TV (Mi Stick 4K/jaws, Mi Box S, etc.). 
-
-
-* **Android Version:** 7.0 (API 24) to 14 (API 34). 
-
-
-* **Architecture:** ARMv7 (32-bit) or ARM64 (64-bit). 
-
-
-* **Root:** Magisk 26.0+ or KernelSU. 
-
-
+*   `module/`: Source code for the Magisk Module.
+*   `client/`: Windows batch scripts for managing the NAS via ADB.
+*   `scripts/`: Build scripts and tools.
+*   `docs/`: Detailed documentation.
 
 ---
 
-## 📥 Installation
+## 🚀 Installation
 
-1. Download the latest([https://github.com/your-repo/releases](https://www.google.com/search?q=https://github.com/your-repo/releases)).
-2. Open **Magisk Manager** ➔ **Modules** ➔ **Install from storage**. 
+### Method 1: Magisk Manager (Recommended)
 
+1.  Download the latest release ZIP.
+2.  Copy to your Android TV device.
+3.  Open Magisk Manager -> Modules -> Install from Storage.
+4.  Select the ZIP and Reboot.
+5.  Wait 3-5 minutes on first boot for Python setup.
 
-3. Select the ZIP and reboot your device.
-4. **⏱ Important:** On the first boot, wait **3-5 minutes** for the Python environment to initialize in the background. 
+### Method 2: Manual Update (via ADB)
 
+If you have the repository on your PC:
 
+1.  Connect your TV Box to ADB.
+2.  Navigate to the `client/` directory.
+3.  Edit `update-nas.bat` to set your TV Box IP.
+4.  Run `update-nas.bat`.
 
----
-
-## 💻 Management & GUI Dashboard
-
-The module includes system-wide binaries that can be executed from any terminal (ADB shell or Termux):
-
-| Command | Action |
-| --- | --- |
-| `module-status` | Launches the **Enhanced Dashboard** (IP, Clients, Storage stats). 
-
- |
-| `module-restart` | Forcefully releases ports and re-initializes all background services. 
-
- |
-| `nas-open` | Triggers a TV intent to open the NAS web interface in the local browser. 
-
- |
+See [docs/MINIMAL_UPDATE.md](docs/MINIMAL_UPDATE.md) for a minimal installation guide.
 
 ---
 
-## 📂 Directory Structure
+## 🛠 Management & Commands
 
-elite-nas-copyparty/
-├── busybox                 # Privileged binary v1.31.1 
-├── copyparty.py            # Core File Server 
-├── customize.sh            # Automated Magisk Installer 
-├── service.sh              # Background Daemon & Watchdog 
-├── config.sh               # User-defined Port/Fallback settings 
-├── module-status.sh        # GUI Terminal Dashboard 
-├── bootstrap-aarch64.zip   # 64-bit Python Environment 
-├── bootstrap-arm.zip       # 32-bit Python Environment 
-└── system/bin/             # Global symlinks (status, restart) 
+Access these commands via ADB shell or Termux:
 
----
+| Command | Description |
+| :--- | :--- |
+| `nas-status` | Show full status (IP, PID, OOM, Storage, Clients). |
+| `nas-restart` | Safe restart of the service (releases ports first). |
+| `nas-open` | Open the NAS web interface in the Android browser. |
 
-## ⚙️ Performance Tuning
+For Windows users, use the scripts in `client/`:
+*   `check-status.bat`: View status from PC.
+*   `restart-nas.bat`: Restart service from PC.
+*   `view-log.bat`: View service logs.
 
-By default, the module applies high-speed parameters from `config_speed_optimized.sh` [1, 1]:
-
-* `--s-wr-sz 262144`: High-speed socket write buffers.
-* `--no-vthumb`: Disables video thumbnails to preserve TV CPU.
-* `--no-dedup`: Skips hash checks for maximum write speed.
+See [docs/BATCH_FILES.md](docs/BATCH_FILES.md) for details on Windows scripts.
 
 ---
 
-## 📜 Copyright & Credits
+## 🔍 Troubleshooting
 
-This project is a composite work utilizing several powerful open-source components:
+**Service Stopped?**
+Check logs:
+```bash
+tail -20 /data/adb/modules/elite-nas-copyparty/service.log
+```
 
-* **BusyBox**: Copyright © 1998-2015 Multiple Authors. Licensed under [GPLv2](https://www.google.com/search?q=https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html). 
+**Storage Unknown?**
+Ensure USB drive is mounted at `/mnt/media_rw/`.
 
-
-* **Termux**: Copyright © Termux Contributors. Licensed under [GPLv3](https://www.google.com/search?q=https://www.gnu.org/licenses/gpl-3.0.en.html). 
-
-
-* **Copyparty**: Copyright © 9001. Licensed under the([https://github.com/9001/copyparty/blob/hovudstraum/LICENSE](https://www.google.com/search?q=https://github.com/9001/copyparty/blob/hovudstraum/LICENSE)). 
-
-
-* **Module Integration**: Copyright © **GenesisPC**. All original shell scripts (`service.sh`, `customize.sh`, `module-status.sh`), architectural logic, and Android TV hardening are the property of GenesisPC. 
-
-
+For more details, see the [Documentation](docs/).
 
 ---
 
-## 🔗 Links & Resources
+## 🔄 Updates
 
-* **Project Home:**([https://github.com/satyamisme/elite-nas-copyparty](https://www.google.com/search?q=https://github.com/satyamisme/elite-nas-copyparty))
-* **Developer Support:**
-* **Report Bugs:** Please include the output of `adb shell su -c module-status` in your issue. 
-
-
+To enable automatic updates via Magisk Manager, follow the instructions in [docs/ENABLE_UPDATES.md](docs/ENABLE_UPDATES.md).
 
 ---
 

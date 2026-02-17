@@ -2,5 +2,6 @@ id=elite-nas-copyparty
 name=Elite NAS Pro
 version=5.3
 versionCode=530
+updateJson=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/update.json
 author=Elite (minimal-fixed)
 description=Minimal fixes to working v5.2. OOM+Wake+Watchdog protection. Same paths. Stable.
