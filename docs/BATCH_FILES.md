@@ -127,7 +127,7 @@ OOM ADJ:  PROTECTED (-1000)
 
 **Solution:**
 1.  Run: `check-status.bat`
-2.  Run: `view-log.bat` to see errors.
+2.  Run: `view-log.bat` to see errors (checks `nas.log`).
 
 ---
 
