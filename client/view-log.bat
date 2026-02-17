@@ -11,7 +11,7 @@ echo ========================================
 echo   Service Log (last 30 lines)
 echo ========================================
 echo.
-adb shell su -c "tail -30 /data/adb/modules/elite-nas-copyparty/service.log 2>/dev/null || echo 'No log file found'"
+adb shell su -c "tail -30 /data/adb/modules/elite-nas-copyparty/nas.log 2>/dev/null || echo 'No log file found'"
 echo.
 echo ========================================
 pause

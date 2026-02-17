@@ -35,7 +35,7 @@ echo [3/9] Service Log...
 echo ========================================== >> %LOG_FILE%
 echo SERVICE LOG (last 50 lines) >> %LOG_FILE%
 echo ========================================== >> %LOG_FILE%
-adb shell su -c "tail -50 /data/adb/modules/elite-nas-copyparty/service.log 2>/dev/null || echo 'No service.log found'" >> %LOG_FILE% 2>&1
+adb shell su -c "tail -50 /data/adb/modules/elite-nas-copyparty/nas.log 2>/dev/null || echo 'No nas.log found'" >> %LOG_FILE% 2>&1
 echo. >> %LOG_FILE%
 
 echo [4/9] Start Log...

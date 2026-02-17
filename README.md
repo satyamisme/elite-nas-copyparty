@@ -75,7 +75,7 @@ See [docs/BATCH_FILES.md](docs/BATCH_FILES.md) for details on Windows scripts.
 **Service Stopped?**
 Check logs:
 ```bash
-tail -20 /data/adb/modules/elite-nas-copyparty/service.log
+tail -20 /data/adb/modules/elite-nas-copyparty/nas.log
 ```
 
 **Storage Unknown?**
