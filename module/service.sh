@@ -53,6 +53,7 @@ log "Starting copyparty..."
 cd "$MODDIR"
 "$PYTHON" "$MODDIR/copyparty.py" \
     -p 8080 \
+    --home "$MODDIR" \
     --no-idx . \
     --unsafe-state \
     -v /mnt/media_rw/4E04-D72A/:nas:rw \
