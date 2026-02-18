@@ -56,10 +56,10 @@ echo [6/9] Network Status...
 echo ========================================== >> %LOG_FILE%
 echo NETWORK STATUS >> %LOG_FILE%
 echo ========================================== >> %LOG_FILE%
-adb shell su -c "netstat -ln | grep 8080" >> %LOG_FILE% 2>&1
+adb shell su -c "netstat -ln | grep 3923" >> %LOG_FILE% 2>&1
 echo. >> %LOG_FILE%
 echo Active Connections: >> %LOG_FILE%
-adb shell su -c "netstat -an | grep 8080 | grep ESTABLISHED" >> %LOG_FILE% 2>&1
+adb shell su -c "netstat -an | grep 3923 | grep ESTABLISHED" >> %LOG_FILE% 2>&1
 echo. >> %LOG_FILE%
 
 echo [7/9] USB Storage...

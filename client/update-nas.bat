@@ -53,7 +53,7 @@ echo.
 echo ========================================
 echo Update complete!
 echo.
-echo Test in browser: http://%TVBOX_IP%:8080/nas/
+echo Test in browser: http://%TVBOX_IP%:3923/nas/
 echo.
 echo Commands:
 echo   nas-restart - Restart service

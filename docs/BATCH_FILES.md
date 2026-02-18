@@ -97,7 +97,7 @@ These files are located in the `client/` directory of the repository.
   ELITE NAS PRO v5.3 (Fixed)
 ==========================================
 STATUS:   RUNNING (PID: 12345)
-URL:      http://192.168.0.241:8080/nas/
+URL:      http://192.168.0.241:3923/nas/
 OOM ADJ:  PROTECTED (-1000)
 ...
 ```
